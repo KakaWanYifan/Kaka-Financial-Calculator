@@ -1,0 +1,87 @@
+<import src="../head.wxml" />
+<import src="../../../common/foot.wxml" />
+
+<view class="container">
+  <template is="head" data="{{title: '金属换算',desc:'LME铜铝进口成本'}}" />
+  <view class="page-body">
+
+    <view class="page-section">
+      <view class="future-page-desc"></view>
+    </view>
+
+    <form bindsubmit="calculate" bindreset="reset">
+
+      <view class="page-section">
+        <view class="weui-cells__title">
+          <view>汇率（美元/人民币）</view>
+          <view class="{{forex}}">默认为中国银行外汇牌价(汇买价+汇卖价)/2</view>
+          <view class="{{forex}}">{{updatetime}}</view>
+        </view>
+        <view class="weui-cells weui-cells_after-title">
+          <view class="weui-cell weui-cell_input">
+            <input name="exchangeRate" class="weui-input" type="digit" value="{{exchangeRate}}" />
+          </view>
+        </view>
+      </view>
+      <view class="page-section">
+        <view class="weui-cells__title">LME三月铜铝价（美元）</view>
+        <view class="weui-cells weui-cells_after-title">
+          <view class="weui-cell weui-cell_input">
+            <input name="a" class="weui-input" type="digit" />
+          </view>
+        </view>
+      </view>
+
+      <view class="page-section">
+        <view class="weui-cells__title">现货/三个月升贴水（美元）</view>
+        <view class="weui-cells weui-cells_after-title">
+          <view class="weui-cell weui-cell_input">
+            <input name="b" class="weui-input" type="digit" />
+          </view>
+        </view>
+      </view>
+
+      <view class="page-section">
+        <view class="weui-cells__title">升贴水（美元）</view>
+        <view class="weui-cells weui-cells_after-title">
+          <view class="weui-cell weui-cell_input">
+            <input name="c" class="weui-input" type="digit" />
+          </view>
+        </view>
+      </view>
+
+      <view class="page-section">
+        <view class="weui-cells__title">关税税率（%）</view>
+        <view class="weui-cells weui-cells_after-title">
+          <view class="weui-cell weui-cell_input">
+            <input name="e" class="weui-input" type="digit" />
+          </view>
+        </view>
+      </view>
+
+      <view class="page-section">
+        <view class="weui-cells__title">增值税率（%）</view>
+        <view class="weui-cells weui-cells_after-title">
+          <view class="weui-cell weui-cell_input">
+            <input name="f" class="weui-input" type="digit" />
+          </view>
+        </view>
+      </view>
+
+      <view class="page-section">
+        <view class="weui-cells__title">其他费用（元）</view>
+        <view class="weui-cells weui-cells_after-title">
+          <view class="weui-cell weui-cell_input">
+            <input name="g" class="weui-input" type="digit" />
+          </view>
+        </view>
+      </view>
+
+      <view class="buttons">
+        <button class="button" type="primary" formType="submit">确定</button>
+        <button class="button" type="default" formType="reset">重置</button>
+      </view>
+    </form>
+  </view>
+  <template is="foot" />
+</view>

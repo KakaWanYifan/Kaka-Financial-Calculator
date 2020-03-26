@@ -1,0 +1,69 @@
+<import src="../../../common/head.wxml" />
+<import src="../../../common/foot.wxml" />
+
+<view class="container">
+  <template is="head" data="{{title: '贴现利息',desc:'若到期日是节假日系统自动顺延'}}" />
+  <view class="page-body">
+    <form bindsubmit="calculate" bindreset="reset">
+
+      <view class="page-section">
+        <view class="weui-cells__title">票面金额（万元）</view>
+        <view class="weui-cells weui-cells_after-title">
+          <view class="weui-cell weui-cell_input">
+            <input name="fa" class="weui-input" type="digit" />
+          </view>
+        </view>
+      </view>
+
+      <view class="page-section">
+        <view class="weui-cells__title">贴现日期</view>
+        <view class="weui-cells weui-cells_after-title">
+          <view class="weui-cell weui-cell_input">
+            <view class="weui-cell__bd">
+              <picker name="bDate" mode="date" bindchange="bindbDateChange">
+                <view class="weui-input">{{bDate}}</view>
+              </picker>
+            </view>
+          </view>
+        </view>
+      </view>
+
+      <view class="page-section">
+        <view class="weui-cells__title">票面到期日</view>
+        <view class="weui-cells weui-cells_after-title">
+          <view class="weui-cell weui-cell_input">
+            <view class="weui-cell__bd">
+              <picker name="eDate" mode="date" bindchange="bindeDateChange">
+                <view class="weui-input">{{eDate}}</view>
+              </picker>
+            </view>
+          </view>
+        </view>
+      </view>
+
+      <view class="page-section">
+        <view class="weui-cells__title">月利率（‰）</view>
+        <view class="weui-cells weui-cells_after-title">
+          <view class="weui-cell weui-cell_input">
+            <input name="interestRate" class="weui-input" type="digit" />
+          </view>
+        </view>
+      </view>
+
+      <view class="page-section">
+        <view class="weui-cells__title">同城异地</view>
+        <view class="weui-cells__title">（异地顺延3天）</view>
+        <radio-group name="three">
+          <radio style="padding-left:15px" value='0' checked="{{checkState}}" />同城
+          <radio style="padding-left:15px" value='3' />异地
+        </radio-group>
+      </view>
+
+      <view class="buttons">
+        <button class="button" type="primary" formType="submit">确定</button>
+        <button class="button" type="default" formType="reset">重置</button>
+      </view>
+    </form>
+  </view>
+  <template is="foot" />
+</view>

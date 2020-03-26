@@ -1,0 +1,254 @@
+<import src="../../../common/head.wxml" />
+<import src="../../../common/foot.wxml" />
+
+<view class="container">
+  <template is="head" data="{{title: '交易手续费',desc:''}}" />
+  <scroll-view scroll-x="true" class="xscroll_bar">
+    <view class="menu_item {{index==activeIndex?'active':''}}" style="width:{{itemWidth}};" wx:for="{{array}}" wx:key="menuId" bindtap="tabChange" data-index="{{index}}">
+      <view class="{{!(index==0 || index-1==activeIndex || index==activeIndex)?'menu_item_border':''}}">
+        {{item.menu}}
+      </view>
+    </view>
+  </scroll-view>
+
+  <view class="page-body">
+    <form bindsubmit="calculate" bindreset="reset">
+
+      <view class="page-section">
+        <view class="weui-cells__title">交易方向</view>
+        <radio-group name="bs" bindchange="radioChange">
+          <radio style="padding-left:15px" value="buy" checked="{{checkState}}" />买入
+          <radio style="padding-left:15px" value="sell" />卖出
+        </radio-group>
+      </view>
+
+      <block wx:if="{{shaBlockState}}">
+
+        <view class="page-section">
+          <view class="weui-cells__title">成交价格（元/股）</view>
+          <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell weui-cell_input">
+              <input name="edTradePrice" class="weui-input" type="digit" />
+            </view>
+          </view>
+        </view>
+
+        <view class="page-section">
+          <view class="weui-cells__title">成交量（股）</view>
+          <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell weui-cell_input">
+              <input name="edTradeNum" class="weui-input" type="number" />
+            </view>
+          </view>
+        </view>
+
+        <view class="page-section">
+          <view class="weui-cells__title">
+            <view>佣金比率（%）</view>
+            <view>（最低收取5元）</view>
+          </view>
+          <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell weui-cell_input">
+              <input name="edTradeRate" class="weui-input" type="digit" />
+            </view>
+          </view>
+        </view>
+
+        <view class="{{stampViewState}}">
+          <view class="page-section">
+            <view class="weui-cells__title">
+              <view>印花税税率（%）</view>
+            </view>
+            <view class="weui-cells weui-cells_after-title">
+              <view class="weui-cell weui-cell_input">
+                <input name="stampRate" class="weui-input" type="digit" />
+              </view>
+            </view>
+          </view>
+        </view>
+
+        <view class="page-section">
+          <view class="weui-cells__title">
+            <view>过户费费率（元/千股）</view>
+            <view>（最低收取1元）</view>
+          </view>
+          <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell weui-cell_input">
+              <input name="rtfRate" class="weui-input" type="digit" />
+            </view>
+          </view>
+        </view>
+
+      </block>
+
+      <block wx:if="{{shbBlockState}}">
+
+        <view class="page-section">
+          <view class="weui-cells__title">成交价格（美元/股）</view>
+          <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell weui-cell_input">
+              <input name="edTradePrice" class="weui-input" type="digit" />
+            </view>
+          </view>
+        </view>
+
+        <view class="page-section">
+          <view class="weui-cells__title">成交量（股）</view>
+          <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell weui-cell_input">
+              <input name="edTradeNum" class="weui-input" type="number" />
+            </view>
+          </view>
+        </view>
+
+        <view class="page-section">
+          <view class="weui-cells__title">
+            <view>佣金比率（%）</view>
+            <view>（最低收取1美元）</view>
+          </view>
+          <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell weui-cell_input">
+              <input name="edTradeRate" class="weui-input" type="digit" />
+            </view>
+          </view>
+        </view>
+
+        <view class="{{stampViewState}}">
+          <view class="page-section">
+            <view class="weui-cells__title">
+              <view>印花税税率（%）</view>
+            </view>
+            <view class="weui-cells weui-cells_after-title">
+              <view class="weui-cell weui-cell_input">
+                <input name="stampRate" class="weui-input" type="digit" />
+              </view>
+            </view>
+          </view>
+        </view>
+
+        <view class="page-section">
+          <view class="weui-cells__title">
+            <view>结算费费率（%）</view>
+          </view>
+          <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell weui-cell_input">
+              <input name="clearingRate" class="weui-input" type="digit" />
+            </view>
+          </view>
+        </view>
+
+      </block>
+
+      <block wx:if="{{szaBlockState}}">
+
+        <view class="page-section">
+          <view class="weui-cells__title">成交价格（元/股）</view>
+          <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell weui-cell_input">
+              <input name="edTradePrice" class="weui-input" type="digit" />
+            </view>
+          </view>
+        </view>
+
+        <view class="page-section">
+          <view class="weui-cells__title">成交量（股）</view>
+          <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell weui-cell_input">
+              <input name="edTradeNum" class="weui-input" type="number" />
+            </view>
+          </view>
+        </view>
+
+        <view class="page-section">
+          <view class="weui-cells__title">
+            <view>佣金比率（%）</view>
+            <view>（最低收取5元）</view>
+          </view>
+          <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell weui-cell_input">
+              <input name="edTradeRate" class="weui-input" type="digit" />
+            </view>
+          </view>
+        </view>
+
+        <view class="{{stampViewState}}">
+          <view class="page-section">
+            <view class="weui-cells__title">
+              <view>印花税税率（%）</view>
+            </view>
+            <view class="weui-cells weui-cells_after-title">
+              <view class="weui-cell weui-cell_input">
+                <input name="stampRate" class="weui-input" type="digit" />
+              </view>
+            </view>
+          </view>
+        </view>
+      </block>
+
+      <block wx:if="{{szbBlockState}}">
+
+        <view class="page-section">
+          <view class="weui-cells__title">成交价格（港元/股）</view>
+          <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell weui-cell_input">
+              <input name="edTradePrice" class="weui-input" type="digit" />
+            </view>
+          </view>
+        </view>
+
+        <view class="page-section">
+          <view class="weui-cells__title">成交量（股）</view>
+          <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell weui-cell_input">
+              <input name="edTradeNum" class="weui-input" type="number" />
+            </view>
+          </view>
+        </view>
+
+        <view class="page-section">
+          <view class="weui-cells__title">
+            <view>佣金比率（%）</view>
+            <view>（最低收取5港元）</view>
+          </view>
+          <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell weui-cell_input">
+              <input name="edTradeRate" class="weui-input" type="digit" />
+            </view>
+          </view>
+        </view>
+
+        <view class="{{stampViewState}}">
+          <view class="page-section">
+            <view class="weui-cells__title">
+              <view>印花税税率（%）</view>
+            </view>
+            <view class="weui-cells weui-cells_after-title">
+              <view class="weui-cell weui-cell_input">
+                <input name="stampRate" class="weui-input" type="digit" />
+              </view>
+            </view>
+          </view>
+        </view>
+
+        <view class="page-section">
+          <view class="weui-cells__title">
+            <view>结算费费率（%）</view>
+          </view>
+          <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell weui-cell_input">
+              <input name="clearingRate" class="weui-input" type="digit" />
+            </view>
+          </view>
+        </view>
+
+      </block>
+
+      <view class="buttons">
+        <button class="button" type="primary" formType="submit">确定</button>
+        <button class="button" type="default" formType="reset">重置</button>
+      </view>
+
+    </form>
+  </view>
+  <template is="foot" />
+</view>

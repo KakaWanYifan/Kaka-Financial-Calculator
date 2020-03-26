@@ -1,0 +1,129 @@
+<import src="../../../common/head.wxml" />
+<import src="../../../common/foot.wxml" />
+
+<view class="container">
+  <template is="head" data="{{title: '债券持有期收益率',desc:'买入已发行债券，并在到期前卖出。'}}"/>
+  <view class="page-body">
+    <form bindsubmit="calculate" bindreset="reset">
+
+      <view class="page-section">
+        <view class="weui-cells__title">债券种类</view>
+        <view class="weui-cells weui-cells_after-title">
+          <view class="weui-cell weui-cell_input">
+            <picker name="calType" bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+              <view class="weui-input">{{array[index]}}</view>
+            </picker>
+          </view>
+        </view>
+      </view>
+
+      <view class="{{specialViewState}}">
+      
+        <view class="page-section">
+          <view class="weui-cells__title">债券面额（元）</view>
+          <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell weui-cell_input">
+              <input name="price" class="weui-input" type="number"/>
+            </view>
+          </view>
+        </view>
+
+        <view class="page-section">
+          <view class="weui-cells__title">附息债券利率（%）</view>
+          <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell weui-cell_input">
+              <input name="rate" class="weui-input" type="digit"/>
+            </view>
+          </view>
+        </view>
+
+        <view class="page-section">
+          <view class="weui-cells__title">债券到期日</view>
+          <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell weui-cell_input">
+              <view class="weui-cell__bd">
+                <picker name="payDate" mode="date" bindchange="bindDateChange_payDate">
+                  <view class="weui-input">{{payDate}}</view>
+                </picker>
+              </view>
+            </view>
+          </view>  
+        </view>
+
+        <view class="page-section">
+          <view class="weui-cells__title">债券利息支付方式</view>
+          <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell weui-cell_input">
+              <picker name="payMethod" bindchange="bindPayPickerChange" value="{{PayId}}" range="{{PayArr}}">
+                <view class="weui-input">{{PayArr[PayId]}}</view>
+              </picker>
+            </view>
+          </view>
+        </view>
+        
+        <view class="{{payMethodViewState}}">
+          <view class="page-section">
+            <view class="weui-cells__title">利息支付频率（次/年）</view>
+            <view class="weui-cells weui-cells_after-title">
+              <view class="weui-cell weui-cell_input">
+                <input name="freq" class="weui-input" type="digit"/>
+              </view>
+            </view>
+          </view>
+        </view>
+
+      </view>
+
+      <view class="page-section">
+        <view class="weui-cells__title">买入日期</view>
+        <view class="weui-cells weui-cells_after-title">
+          <view class="weui-cell weui-cell_input">
+            <view class="weui-cell__bd">
+              <picker name="buyDate" mode="date" bindchange="bindDateChange_buyDate">
+                <view class="weui-input">{{buyDate}}</view>
+              </picker>
+            </view>
+          </view>
+        </view>  
+      </view>
+    
+      <view class="page-section">
+        <view class="weui-cells__title">买入价格</view>
+        <view class="weui-cells weui-cells_after-title">
+          <view class="weui-cell weui-cell_input">
+            <input name="buyPrice" class="weui-input" type="digit"/>
+          </view>
+        </view>
+      </view>
+
+      <view class="page-section">
+        <view class="weui-cells__title">卖出日期</view>
+        <view class="weui-cells weui-cells_after-title">
+          <view class="weui-cell weui-cell_input">
+            <view class="weui-cell__bd">
+              <picker name="sellDate" mode="date" bindchange="bindDateChange_sellDate">
+                <view class="weui-input">{{sellDate}}</view>
+              </picker>
+            </view>
+          </view>
+        </view>  
+      </view>
+    
+      <view class="page-section">
+        <view class="weui-cells__title">卖出价格</view>
+        <view class="weui-cells weui-cells_after-title">
+          <view class="weui-cell weui-cell_input">
+            <input name="sellPrice" class="weui-input" type="digit"/>
+          </view>
+        </view>
+      </view>
+
+      <view class="buttons">
+        <button class="button" type="primary" formType="submit">确定</button>
+        <button class="button" type="default" formType="reset">重置</button>
+      </view>
+
+    </form>
+  </view>
+  <template is="foot"/>
+</view>

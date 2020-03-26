@@ -1,0 +1,69 @@
+<import src="../../../common/head.wxml" />
+<import src="../../../common/foot.wxml" />
+
+<view class="container">
+  <template is="head" data="{{title: '存款准备金率调整影响',desc:'存款准备金率调整后对银行体系流动性的影响'}}"/>
+  <view class="page-body">
+    <form bindsubmit="calculate" bindreset="reset">
+
+    <view class="page-section">
+      <view class="weui-cells__title">
+        <view>广义货币供应量(M2)（万亿）</view>
+        <view class="{{view_state}}">（默认值相对于当前月为上月值）</view>
+      </view>
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_input">
+          <input name="M2" class="weui-input" type="digit" value="{{M2}}"/>
+        </view>
+      </view>
+    </view>
+
+    <view class="page-section">
+      <view class="weui-cells__title">
+        <view>狭义货币供应量(M1)（万亿）</view>
+        <view class="{{view_state}}">（默认值相对于当前月为上月值）</view>
+      </view>
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_input">
+          <input name="M1" class="weui-input" type="digit" value="{{M1}}"/>
+        </view>
+      </view>
+    </view>
+  
+    <view class="page-section">
+      <view class="weui-cells__title">
+      <view>流通中的现金(M0)（万亿）</view>
+      <view class="{{view_state}}">（默认值相对于当前月为上月值）</view>
+      </view>
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_input">
+          <input name="M0" class="weui-input" type="digit" value="{{M0}}"/>
+        </view>
+      </view>
+    </view>
+
+    <view class="page-section">
+      <view class="weui-cells__title">法定存款准备金率调整方向</view>
+        <radio-group name="orientation">
+          <radio style="padding-left:15px" value="银行体系流动性收缩" checked="{{checkState}}"/>上调
+          <radio style="padding-left:15px" value="银行体系流动性增加"/>下调
+        </radio-group>
+    </view>
+    
+    <view class="page-section">
+      <view class="weui-cells__title">法定存款准备金率调整百分点（%）</view>
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_input">
+          <input name="rate" class="weui-input" type="digit"/>
+        </view>
+      </view>
+    </view>
+
+    <view class="buttons">
+      <button class="button" type="primary" formType="submit">确定</button>
+      <button class="button" type="default" formType="reset">重置</button>
+    </view>
+    </form>
+  </view>
+  <template is="foot"/>
+</view>

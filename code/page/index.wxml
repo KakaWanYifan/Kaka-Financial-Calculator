@@ -1,0 +1,30 @@
+<import src="../common/foot.wxml" />
+
+<view class="container">
+  <view class="index-hd">
+    <view class="index-desc">欢迎反馈</view>
+    <view class="index-desc">Wan_Yifan@foxmail.com</view>
+  </view>
+  <view class="index-bd">
+    <view class="kind-list">
+      <block wx:for-items="{{list}}" wx:key="{{item.id}}">
+        <view class="kind-list-item">
+          <view id="{{item.id}}" class="kind-list-item-hd {{item.open ? 'kind-list-item-hd-show' : ''}}" bindtap="kindToggle">
+            <view class="kind-list-text">{{item.name}}</view>
+          </view>
+          <view class="kind-list-item-bd {{item.open ? 'kind-list-item-bd-show' : ''}}">
+            <view class="navigator-box {{item.open ? 'navigator-box-show' : ''}}">
+              <block wx:for-items="{{item.pages}}" wx:for-item="page" wx:key="*item">
+                <navigator url="{{page.path}}/{{page.url}}/{{page.url}}" class="navigator">
+                  <view class="navigator-text">{{page.name}}</view>
+                  <view class="navigator-arrow"></view>
+                </navigator>
+              </block>
+            </view>
+          </view>
+        </view>
+      </block>
+    </view>
+  </view>
+  <template is="foot" />
+</view>

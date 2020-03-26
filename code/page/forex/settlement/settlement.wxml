@@ -1,0 +1,57 @@
+<import src="../../../common/head.wxml" />
+<import src="../../../common/foot.wxml" />
+
+<view class="container">
+  <template is="head" data="{{title: '结汇',desc:''}}" />
+  <view class="page-body">
+    <form bindsubmit="calculate" bindreset="reset">
+
+    <view class="page-section">
+      <view class="weui-cells__title">卖出外汇形式</view>
+        <radio-group name="fType" bindchange="radioChange">
+          <radio style="padding-left:15px" value="hui_in" checked="{{checkState}}"/>现汇
+          <radio style="padding-left:15px" value="chao_in"/>现钞
+        </radio-group>
+    </view>
+
+      <view class="page-section">
+        <view class="weui-cells__title">买出外汇类别</view>
+        <view class="weui-cells weui-cells_after-title">
+          <view class="weui-cell weui-cell_input">
+            <picker bindchange="bindPickerChange" value="{{index}}" range="{{arrCn}}">
+              <view class="weui-input">{{arrCn[index]}}</view>
+            </picker>
+          </view>
+        </view>
+      </view>
+
+      <view class="page-section">
+        <view class="weui-cells__title">
+          <view>汇率</view>
+          <view class="{{forex}}">{{HCD}}</view>
+          <view class="{{forex}}">{{updatetime}}</view>
+        </view>
+        <view class="weui-cells weui-cells_after-title">
+          <view class="weui-cell weui-cell_input">
+            <input name="exchangeRate" class="weui-input" type="digit" value="{{exchangeRate}}" />
+          </view>
+        </view>
+      </view>
+
+      <view class="page-section">
+        <view class="weui-cells__title">卖出外汇数量</view>
+        <view class="weui-cells weui-cells_after-title">
+          <view class="weui-cell weui-cell_input">
+            <input name="fa" class="weui-input" type="digit" />
+          </view>
+        </view>
+      </view>
+
+      <view class="buttons">
+        <button class="button" type="primary" formType="submit">确定</button>
+        <button class="button" type="default" formType="reset">重置</button>
+      </view>
+    </form>
+  </view>
+  <template is="foot" />
+</view>

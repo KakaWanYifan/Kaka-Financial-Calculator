@@ -1,0 +1,23 @@
+.page-section{
+  margin-bottom: 20rpx;
+}
+
+.view_hide{
+    display: none;
+}
+
+.view_show{
+    display: block;
+}
+
+.buttons {
+  display: flex;
+  padding: 30rpx 50rpx 10rpx;
+  width: 100%;
+}
+.button {
+  float: left;
+  line-height: 2;
+  width: 300rpx;
+  margin: 15rpx 12rpx;
+}

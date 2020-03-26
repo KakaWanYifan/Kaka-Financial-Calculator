@@ -1,0 +1,30 @@
+<import src="../head.wxml" />
+<import src="../../../common/foot.wxml" />
+
+<view class="container">
+  <template is="head" data="{{title: '白糖换算',desc:'白糖进口成本换算'}}" />
+  <view class="page-body">
+
+    <view class="page-section">
+      <view class="future-page-desc">
+        <view>纽约原糖价格换算：1美分/磅＝22.0462美元/吨＝22.0462×(美元/人民币)元/吨</view>
+        <view>纽约原糖重量容量换算：1磅＝0.0004536公吨</view>
+      </view>
+    </view>
+
+    <view class="page-section">
+        <view class="sugar-h1">1、进口原糖加工成白砂糖成本价计算方法：</view>
+        <view class="sugar-h2">原糖到岸价(税前)=离岸价+保险费+海运费+外贸代理费+银行手续费+利息+劳务</view>
+        <view class="sugar-h2">原糖到岸价(税后)=税前到岸价+关税+增值税</view>
+        <view class="sugar-h2">白糖成本价=税后原糖到岸价+加工费+损耗</view>
+        <view class="sugar-h1">2、说明：</view>
+        <view class="sugar-h2">2.1、FOB(离岸价) ＝(原糖价+升水)×重量单位换算值×旋光度增值。</view>
+        <view class="sugar-h3">其中22.046为重量单位换算；1.03为旋光度增值[7-10月的货物取值为1.03]</view>
+        <view class="sugar-h2">2.2、保险费 ＝(离岸价+运费)×保险费率</view>
+        <view class="sugar-h3">其中0.004616为保险费率，1.01为外贸代理费率；1.00125为银行手续费率，1.15海关税率；1.17为增值税率</view>
+        <view class="sugar-h2">2.3、加工费+损耗= 500元/吨</view>
+    </view>
+
+  </view>
+  <template is="foot" />
+</view>

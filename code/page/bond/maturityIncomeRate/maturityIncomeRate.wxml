@@ -1,0 +1,22 @@
+<import src="../../../common/head.wxml" />
+<import src="../../../common/foot.wxml" />
+
+<view class="container">
+  <template is="head" data="{{title: '债券到期收益率',desc:'买入已发行债券，并持有到期。'}}"/>
+  <view class="page-body">
+    <view class="btn-area">
+      <navigator url="switch/one" hover-class="navigator-hover">
+        <button class="btn_nav" >处于最后付息周期的固定利率债券、待偿期在一年及以内的到期一次还本付息债券和零息债券。<span class="navigator-arrow"></span></button>
+      </navigator>
+      <navigator url="switch/two" hover-class="navigator-hover">
+        <button class="btn_nav" >待偿期在一年以上的到期一次还本付息债券和零息债券。<span class="navigator-arrow"></span></button>
+      </navigator>
+      <navigator url="switch/three" hover-class="navigator-hover">
+        <button class="btn_nav" >不处于最后付息周期的固定利率债券。<span class="navigator-arrow"></span></button>
+      </navigator>
+    </view>
+  </view>
+
+  <template is="foot" />
+</view>
+

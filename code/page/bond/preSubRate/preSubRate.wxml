@@ -1,0 +1,22 @@
+<import src="../../../common/head.wxml" />
+<import src="../../../common/foot.wxml" />
+
+<view class="container">
+  <template is="head" data="{{title: '债券认购收益率',desc:'买入新发行债券，并持有到期。'}}"/>
+  <view class="page-body">
+    <view class="btn-area">
+      <navigator url="preSubMain?m=a" hover-class="navigator-hover">
+        <button class="btn_nav" >贴现债券<span class="navigator-arrow"></span></button>
+      </navigator>
+      <navigator url="preSubMain?m=b" hover-class="navigator-hover">
+        <button class="btn_nav" >到期一次还本付息债券<span class="navigator-arrow"></span></button>
+      </navigator>
+      <navigator url="preSubMain?m=c" hover-class="navigator-hover">
+        <button class="btn_nav" >固定利率附息债券和浮动利率债券<span class="navigator-arrow"></span></button>
+      </navigator>
+    </view>
+  </view>
+
+  <template is="foot" />
+</view>
+

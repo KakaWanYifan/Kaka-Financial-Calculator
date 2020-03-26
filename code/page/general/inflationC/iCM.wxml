@@ -1,0 +1,51 @@
+<import src="../../../common/head.wxml" />
+<import src="../../../common/foot.wxml" />
+
+<view class="container">
+  <block wx:if="{{aBlockState}}">
+    <template is="head" data="{{title: '通货膨胀对消费的影响',desc:'将来某时刻的现金实际购买力价值'}}" />
+  </block>
+  <block wx:if="{{bBlockState}}">
+    <template is="head" data="{{title: '通货膨胀对消费的影响',desc:'将来某时刻某种商品的价格'}}" />
+  </block>
+
+  <view class="page-body">
+    <form bindsubmit="calculate" bindreset="reset">
+
+      <input name="calType" class="view_hide" value="{{calType}}" />
+      <view class="page-section">
+        <view class="weui-cells weui-cells_after-title">
+          <view class="weui-cell weui-cell_input">
+            <input name="years" class="weui-input" type="digit"  style="width:90px"/>
+            <span>年后的影响</span>
+          </view>
+        </view>
+      </view>
+
+      <view class="page-section">
+        <view class="weui-cells__title">{{inputTitle}}</view>
+        <view class="weui-cells weui-cells_after-title">
+          <view class="weui-cell weui-cell_input">
+            <input name="volume" class="weui-input" type="digit" />
+          </view>
+        </view>
+      </view>
+
+      <view class="page-section">
+        <view class="weui-cells__title">预期年通货膨胀率（%）</view>
+        <view class="weui-cells weui-cells_after-title">
+          <view class="weui-cell weui-cell_input">
+            <input name="rate" class="weui-input" type="digit" />
+          </view>
+        </view>
+      </view>
+
+      <view class="buttons">
+        <button class="button" type="primary" formType="submit">确定</button>
+        <button class="button" type="default" formType="reset">重置</button>
+      </view>
+
+    </form>
+  </view>
+  <template is="foot" />
+</view>

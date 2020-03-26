@@ -1,0 +1,24 @@
+@import "../../../common/lib/weui.wxss";
+@import "../../../common/kfc.wxss";
+
+.btn_nav{
+  text-align: left;
+  font-size: 30rpx;
+  padding: 30rpx 60rpx 30rpx 30rpx;
+  margin-bottom: 50rpx;
+  background-color: #fff;
+}
+.navigator-arrow {
+  content: " ";
+  display: inline-block;
+  height: 18rpx;
+  width: 18rpx;
+  border-width: 2rpx 2rpx 0 0;
+  border-color: #888888;
+  border-style: solid;
+  transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);
+  position: absolute;
+  top: 50%;
+  margin-top: -8rpx;
+  right: 28rpx;
+}

@@ -1,0 +1,49 @@
+<import src="../head.wxml" />
+<import src="../../../common/foot.wxml" />
+
+<view class="container">
+  <template is="head" data="{{title: 'PTA换算',desc:'PTA成本'}}" />
+  <view class="page-body">
+
+    <view class="page-section">
+      <view class="future-page-desc">
+        <view>PX又称对二甲苯，是一种重要的有机化工原料，用它可生产精对苯二甲酸(PTA)。 0.655×PX价格为原料成本，1200元为各种生产费用。</view>
+        <view>说明：</view>
+        <view>1、PTA的生产原料成本:PTA的原料成本=0.655×PX价</view>
+        <view>2、单位产品直接加工成本约375元/吨</view>
+        <view>3、单位产品包装成本约45元/吨</view>
+        <view>4、单位产品人工成本约20元/吨</view>
+        <view>5、单位产品财务费用约145元，单位产品折旧约305元</view>
+        <view>6、单位产品运费约50元/吨</view>
+        <view>7、单位产品维修、管理费用估计在60元/吨</view>
+        <view>8、PTA生产的税前总成本：0.655×PX价+1000</view>
+      </view>
+    </view>
+
+    <form bindsubmit="calculate" bindreset="reset">
+      <view class="page-section">
+        <view class="weui-cells__title">PX价（元/吨）</view>
+        <view class="weui-cells weui-cells_after-title">
+          <view class="weui-cell weui-cell_input">
+            <input name="a" class="weui-input" type="digit" />
+          </view>
+        </view>
+      </view>
+
+      <view class="page-section">
+        <view class="weui-cells__title">费用（元/吨）</view>
+        <view class="weui-cells weui-cells_after-title">
+          <view class="weui-cell weui-cell_input">
+            <input name="b" class="weui-input" type="digit" />
+          </view>
+        </view>
+      </view>
+
+      <view class="buttons">
+        <button class="button" type="primary" formType="submit">确定</button>
+        <button class="button" type="default" formType="reset">重置</button>
+      </view>
+    </form>
+  </view>
+  <template is="foot" />
+</view>

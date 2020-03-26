@@ -1,0 +1,139 @@
+<import src="../../../common/head.wxml" />
+<import src="../../../common/foot.wxml" />
+
+<view class="container">
+  <template is="head" data="{{title: '债券收益率',desc:''}}"/>
+  <view class="page-body">
+    <form bindsubmit="calculate" bindreset="reset">
+
+    <view class="page-section">
+      <view class="weui-cells__title">计算种类</view>
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_input">
+            <picker name="calType" bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+              <view class="weui-input">{{array[index]}}</view>
+            </picker>
+        </view>
+      </view>
+    </view>
+
+    <view class="{{aViewState}}">
+      <view class="page-section">
+        <view class="weui-cells__title">债券面值（元）</view>
+        <view class="weui-cells weui-cells_after-title">
+          <view class="weui-cell weui-cell_input">
+            <input name="aBondValue" class="weui-input" type="digit"/>
+          </view>
+        </view>
+      </view>  
+      <view class="page-section">
+        <view class="weui-cells__title">买入价格（元）</view>
+        <view class="weui-cells weui-cells_after-title">
+          <view class="weui-cell weui-cell_input">
+            <input name="aBuyPrice" class="weui-input" type="digit"/>
+          </view>
+        </view>
+      </view>
+      <view class="page-section">
+        <view class="weui-cells__title">到期时间（天）</view>
+        <view class="weui-cells weui-cells_after-title">
+          <view class="weui-cell weui-cell_input">
+            <input name="aExpireDays" class="weui-input" type="number"/>
+          </view>
+        </view>
+      </view>
+      <view class="page-section">
+        <view class="weui-cells__title">票面年利率（%）</view>
+        <view class="weui-cells weui-cells_after-title">
+          <view class="weui-cell weui-cell_input">
+            <input name="aAnnualInterestRate" class="weui-input" type="digit"/>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class="{{bViewState}}">
+      <view class="page-section">
+        <view class="weui-cells__title">发行价格（元）</view>
+        <view class="weui-cells weui-cells_after-title">
+          <view class="weui-cell weui-cell_input">
+            <input name="bIssuePrice" class="weui-input" type="digit"/>
+          </view>
+        </view>
+      </view>  
+      <view class="page-section">
+        <view class="weui-cells__title">卖出价格（元）</view>
+        <view class="weui-cells weui-cells_after-title">
+          <view class="weui-cell weui-cell_input">
+            <input name="bSellPrice" class="weui-input" type="digit"/>
+          </view>
+        </view>
+      </view>
+      <view class="page-section">
+        <view class="weui-cells__title">持有时间（天）</view>
+        <view class="weui-cells weui-cells_after-title">
+          <view class="weui-cell weui-cell_input">
+            <input name="bHoldDays" class="weui-input" type="number"/>
+          </view>
+        </view>
+      </view>
+      <view class="page-section">
+        <view class="weui-cells__title">票面年利率（%）</view>
+        <view class="weui-cells weui-cells_after-title">
+          <view class="weui-cell weui-cell_input">
+            <input name="bAnnualInterestRate" class="weui-input" type="digit"/>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class="{{cViewState}}">
+      <view class="page-section">
+        <view class="weui-cells__title">债券面值（元）</view>
+        <view class="weui-cells weui-cells_after-title">
+          <view class="weui-cell weui-cell_input">
+            <input name="cBondValue" class="weui-input" type="digit"/>
+          </view>
+        </view>
+      </view>  
+      <view class="page-section">
+        <view class="weui-cells__title">买入价格（元）</view>
+        <view class="weui-cells weui-cells_after-title">
+          <view class="weui-cell weui-cell_input">
+            <input name="cBuyPrice" class="weui-input" type="digit"/>
+          </view>
+        </view>
+      </view>
+      <view class="page-section">
+        <view class="weui-cells__title">卖出价格（元）</view>
+        <view class="weui-cells weui-cells_after-title">
+          <view class="weui-cell weui-cell_input">
+            <input name="cSellPrice" class="weui-input" type="digit"/>
+          </view>
+        </view>
+      </view>
+      <view class="page-section">
+        <view class="weui-cells__title">持有时间（天）</view>
+        <view class="weui-cells weui-cells_after-title">
+          <view class="weui-cell weui-cell_input">
+            <input name="cHoldDays" class="weui-input" type="digit"/>
+          </view>
+        </view>
+      </view>
+      <view class="page-section">
+        <view class="weui-cells__title">票面年利率（%）</view>
+        <view class="weui-cells weui-cells_after-title">
+          <view class="weui-cell weui-cell_input">
+            <input name="cAnnualInterestRate" class="weui-input" type="digit"/>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="buttons">
+      <button class="button" type="primary" formType="submit">确定</button>
+      <button class="button" type="default" formType="reset">重置</button>
+    </view>
+    </form>
+  </view>
+  <template is="foot"/>
+</view>

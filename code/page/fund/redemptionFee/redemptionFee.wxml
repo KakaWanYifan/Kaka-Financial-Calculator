@@ -1,0 +1,66 @@
+<import src="../../../common/head.wxml" />
+<import src="../../../common/foot.wxml" />
+
+<view class="container">
+  <template is="head" data="{{title: '基金赎回费用',desc:'采用外扣法计算'}}"/>
+  <view class="page-body">
+    <form bindsubmit="calculate" bindreset="reset">
+
+    <view class="page-section">
+      <view class="weui-cells__title">赎回份额（份）</view>
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_input">
+          <input name="redAmount" class="weui-input" type="digit"/>
+        </view>
+      </view>
+    </view>
+  
+    <view class="page-section">
+      <view class="weui-cells__title">赎回净值（元）</view>
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_input">
+          <input name="redNetValue" class="weui-input" type="digit"/>
+        </view>
+      </view>
+    </view>
+    
+    <view class="page-section">
+      <view class="weui-cells__title">赎回费率（%）</view>
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_input">
+          <input name="redRate" class="weui-input" type="digit"/>
+        </view>
+      </view>
+    </view>
+
+    <view class="page-section">
+      <view class="weui-cells__title">后端收费</view>
+        <switch style="padding-left:15px" name="isBackend" bindchange="switchChange"/>
+    </view>
+
+    <view class="page-section {{viewState}}">
+      <view class="weui-cells__title">申购净值（元）</view>
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_input">
+          <input name="subNetValue" class="weui-input" type="digit"/>
+        </view>
+      </view>
+    </view>
+    
+    <view class="page-section {{viewState}}">
+      <view class="weui-cells__title">后端申购费率（%）</view>
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_input">
+          <input name="subRate" class="weui-input" type="digit"/>
+        </view>
+      </view>
+    </view>
+
+    <view class="buttons">
+      <button class="button" type="primary" formType="submit">确定</button>
+      <button class="button" type="default" formType="reset">重置</button>
+    </view>
+    </form>
+  </view>
+  <template is="foot"/>
+</view>

@@ -1,0 +1,116 @@
+<import src="../../../common/head.wxml" />
+<import src="../../../common/foot.wxml" />
+
+<view class="container">
+  <template is="head" data="{{title: '新增投资信息',desc:''}}" />
+  <view class="page-body">
+    <form bindsubmit="set" bindreset="close">
+
+      <block wx:if="{{iBlockStateY}}">
+        <view class="page-section">
+          <view class="weui-cells__title">投资品种</view>
+          <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell weui-cell_input">
+              <picker name="i" bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+                <view class="weui-input">{{array[index]}}</view>
+              </picker>
+            </view>
+          </view>
+        </view>
+      </block>
+
+      <block wx:if="{{pBlockStateY}}">
+        <view class="page-section">
+          <view class="weui-cells__title">
+            <view>价格（指数点）</view>
+            <view>更新时间：{{uTime}}</view>
+          </view>
+          <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell weui-cell_input">
+              <input name="p" class="weui-input" type="digit" value="{{newPrice}}" />
+            </view>
+          </view>
+        </view>
+      </block>
+
+      <block wx:if="{{iBlockStateN}}">
+        <view class="page-section">
+          <view class="weui-cells__title">投资品种</view>
+          <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell weui-cell_input">
+              <input name="i" class="weui-input" type="text" />
+            </view>
+          </view>
+        </view>
+      </block>
+
+      <block wx:if="{{pBlockStateN}}">
+        <view class="page-section">
+          <view class="weui-cells__title">价格（指数点）</view>
+          <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell weui-cell_input">
+              <input name="p" class="weui-input" type="digit" />
+            </view>
+          </view>
+        </view>
+      </block>
+
+      <view class="page-section">
+        <view class="weui-cells__title">保证金比例（%）</view>
+        <view class="weui-cells weui-cells_after-title">
+          <view class="weui-cell weui-cell_input">
+            <input name="b" class="weui-input" type="digit" />
+          </view>
+        </view>
+      </view>
+
+      <view class="page-section">
+        <view class="weui-cells__title">开仓数量（手）</view>
+        <view class="weui-cells weui-cells_after-title">
+          <view class="weui-cell weui-cell_input">
+            <input name="k" class="weui-input" type="digit" />
+          </view>
+        </view>
+      </view>
+
+      <block wx:if="{{dkBlockState}}">
+        <view class="page-section">
+          <view class="weui-cells__title">开仓方向</view>
+          <radio-group name="dk">
+            <radio style="padding-left:15px" value="多" checked="{{checkState}}" />多
+            <radio style="padding-left:15px" value="空" />空
+          </radio-group>
+        </view>
+        <block wx:if="{{pBlockStateY}}">
+          <view class="page-section">
+            <view class="weui-cells__title">
+              <view>损益参照价（指数点）</view>
+              <view>更新时间：{{uTime}}</view>
+            </view>
+            <view class="weui-cells weui-cells_after-title">
+              <view class="weui-cell weui-cell_input">
+                <input name="rp" class="weui-input" type="digit" value="{{newPrice}}" />
+              </view>
+            </view>
+          </view>
+        </block>
+        <block wx:if="{{pBlockStateN}}">
+          <view class="page-section">
+            <view class="weui-cells__title">损益参照价（指数点）</view>
+            <view class="weui-cells weui-cells_after-title">
+              <view class="weui-cell weui-cell_input">
+                <input name="rp" class="weui-input" type="digit" />
+              </view>
+            </view>
+          </view>
+        </block>
+      </block>
+
+      <view class="buttons">
+        <button class="button" type="primary" formType="submit">确定</button>
+        <button class="button" type="default" formType="reset">取消</button>
+      </view>
+    </form>
+  </view>
+  <template is="foot" />
+</view>

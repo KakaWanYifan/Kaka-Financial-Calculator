@@ -1,0 +1,77 @@
+<import src="../../../common/head.wxml" />
+<import src="../../../common/foot.wxml" />
+
+<view class="container">
+  <block wx:if="{{aBlockState}}">
+    <template is="head" data="{{title: '贴现债券',desc:'认购价格大于债券面额则无收益'}}"/>
+  </block>
+  <block wx:if="{{bBlockState}}">
+    <template is="head" data="{{title: '到期一次还本付息债券',desc:''}}"/>
+  </block>
+  <block wx:if="{{cBlockState}}">
+    <template is="head" data="{{title: '固定利率附息债券和浮动利率债券',desc:''}}"/>
+  </block>
+
+  <view class="page-body">
+    <form bindsubmit="calculate" bindreset="reset">
+
+    <input name="calType" class="view_hide" value="{{calType}}"/>    
+
+    <view class="{{aViewState}}">
+      <view class="page-section">
+        <view class="weui-cells__title">债券面额（元）</view>
+        <view class="weui-cells weui-cells_after-title">
+          <view class="weui-cell weui-cell_input">
+            <input name="edCost" class="weui-input" type="number"/>
+          </view>
+        </view>
+      </view>  
+      <view class="page-section">
+        <view class="weui-cells__title">认购价格（元）</view>
+        <view class="weui-cells weui-cells_after-title">
+          <view class="weui-cell weui-cell_input">
+            <input name="edPrice" class="weui-input" type="number"/>
+          </view>
+        </view>
+      </view>
+      <view class="page-section">
+        <view class="weui-cells__title">债券期限（年）</view>
+        <view class="weui-cells weui-cells_after-title">
+          <view class="weui-cell weui-cell_input">
+            <input name="edYear" class="weui-input" type="number"/>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class="{{bViewState}}">
+      <view class="page-section">
+        <view class="weui-cells__title">票面利率（%）</view>
+        <view class="weui-cells weui-cells_after-title">
+          <view class="weui-cell weui-cell_input">
+            <input name="edRate" class="weui-input" type="digit"/>
+          </view>
+        </view>
+      </view>  
+    </view>
+
+    <view class="{{cViewState}}">
+      <view class="page-section">
+        <view class="weui-cells__title">利息支付频率（次/年）</view>
+        <view class="weui-cells weui-cells_after-title">
+          <view class="weui-cell weui-cell_input">
+            <input name="edFreq" class="weui-input" type="number"/>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class="buttons">
+      <button class="button" type="primary" formType="submit">确定</button>
+      <button class="button" type="default" formType="reset">重置</button>
+    </view>
+
+    </form>
+  </view>
+  <template is="foot"/>
+</view>

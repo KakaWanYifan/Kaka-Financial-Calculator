@@ -1,0 +1,24 @@
+@import "../../../common/lib/weui.wxss";
+@import "../../../common/kfc.wxss";
+
+.sugar-h1{
+  padding-left: 15px;
+  padding-right: 15px;
+  color: #2c2c2c;
+  font-size: 32rpx;
+  text-align: left;
+}
+.sugar-h2{
+  padding-left: 35px;
+  padding-right: 15px;
+  color: #2c2c2c;
+  font-size: 32rpx;
+  text-align: left;
+}
+.sugar-h3{
+  padding-left: 67px;
+  padding-right: 15px;
+  color: #2c2c2c;
+  font-size: 32rpx;
+  text-align: left;
+}

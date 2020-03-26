@@ -1,0 +1,73 @@
+<import src="../head.wxml" />
+<import src="../../../common/foot.wxml" />
+
+<view class="container">
+  <template is="head" data="{{title: '白银换算',desc:''}}" />
+  <view class="page-body">
+
+    <view class="page-section">
+      <view class="future-page-desc">
+        <view>白银单位换算：1盎司=28.350克</view>
+      </view>
+    </view>
+
+    <form bindsubmit="calculate" bindreset="reset">
+
+      <view class="page-section">
+        <view class="weui-cells__title">请选择</view>
+        <view class="weui-cells weui-cells_after-title">
+          <view class="weui-cell weui-cell_input">
+            <picker name="calType" bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+              <view class="weui-input">{{array[index]}}</view>
+            </picker>
+          </view>
+        </view>
+      </view>
+
+      <view class="page-section">
+        <view class="weui-cells__title">
+          <view>汇率（美元/人民币）</view>
+          <view class="{{forex}}">默认为中国银行外汇牌价(汇买价+汇卖价)/2</view>
+          <view class="{{forex}}">{{updatetime}}</view>
+        </view>
+        <view class="weui-cells weui-cells_after-title">
+          <view class="weui-cell weui-cell_input">
+            <input name="exchangeRate" class="weui-input" type="digit" value="{{exchangeRate}}" />
+          </view>
+        </view>
+      </view>
+
+      <view class="{{viewOneState}}">
+
+        <view class="page-section">
+          <view class="weui-cells__title">外盘（美元/盎司）</view>
+          <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell weui-cell_input">
+              <input name="bo" class="weui-input" type="digit" />
+            </view>
+          </view>
+        </view>
+
+      </view>
+
+      <view class="{{viewTwoState}}">
+
+        <view class="page-section">
+          <view class="weui-cells__title">内盘（元/克）</view>
+          <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell weui-cell_input">
+              <input name="bi" class="weui-input" type="digit" />
+            </view>
+          </view>
+        </view>
+
+      </view>
+
+      <view class="buttons">
+        <button class="button" type="primary" formType="submit">确定</button>
+        <button class="button" type="default" formType="reset">重置</button>
+      </view>
+    </form>
+  </view>
+  <template is="foot" />
+</view>

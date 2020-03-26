@@ -1,0 +1,82 @@
+<import src="../head.wxml" />
+<import src="../../../common/foot.wxml" />
+
+<view class="container">
+  <template is="head" data="{{title: '小麦换算',desc:'进口小麦到岸成本'}}" />
+  <view class="page-body">
+
+    <view class="page-section">
+      <view class="future-page-desc">
+        <view>小麦价格换算：1美元/蒲式耳＝36.7437美元/吨＝36.7437×(美元/人民币)元/吨</view>
+        <view>小麦单产换算：1蒲式耳/英亩＝0.0671987654吨/公顷＝4.4799176955公斤/亩</view>
+        <view>小麦重量容积换算：1蒲式耳＝60磅＝0.0272155公吨＝0.0267857长吨＝0.03短吨</view>
+      </view>
+    </view>
+
+    <form bindsubmit="calculate" bindreset="reset">
+
+      <view class="page-section">
+        <view class="weui-cells__title">
+          <view>汇率（美元/人民币）</view>
+          <view class="{{forex}}">默认为中国银行外汇牌价(汇买价+汇卖价)/2</view>
+          <view class="{{forex}}">{{updatetime}}</view>
+        </view>
+        <view class="weui-cells weui-cells_after-title">
+          <view class="weui-cell weui-cell_input">
+            <input name="exchangeRate" class="weui-input" type="digit" value="{{exchangeRate}}" />
+          </view>
+        </view>
+      </view>
+      <view class="page-section">
+        <view class="weui-cells__title">运费（美元/吨）</view>
+        <view class="weui-cells weui-cells_after-title">
+          <view class="weui-cell weui-cell_input">
+            <input name="a" class="weui-input" type="digit" />
+          </view>
+        </view>
+      </view>
+
+      <view class="page-section">
+        <view class="weui-cells__title">基差（美分/蒲式耳）</view>
+        <view class="weui-cells weui-cells_after-title">
+          <view class="weui-cell weui-cell_input">
+            <input name="b" class="weui-input" type="digit" />
+          </view>
+        </view>
+      </view>
+
+      <view class="page-section">
+        <view class="weui-cells__title">关税税率（%）</view>
+        <view class="weui-cells weui-cells_after-title">
+          <view class="weui-cell weui-cell_input">
+            <input name="ca" class="weui-input" type="digit" />
+          </view>
+        </view>
+      </view>
+
+      <view class="page-section">
+        <view class="weui-cells__title">增值税率（%）</view>
+        <view class="weui-cells weui-cells_after-title">
+          <view class="weui-cell weui-cell_input">
+            <input name="cb" class="weui-input" type="digit" />
+          </view>
+        </view>
+      </view>
+
+      <view class="page-section">
+        <view class="weui-cells__title">芝加哥盘面价（美分/蒲式耳）</view>
+        <view class="weui-cells weui-cells_after-title">
+          <view class="weui-cell weui-cell_input">
+            <input name="e" class="weui-input" type="digit" />
+          </view>
+        </view>
+      </view>
+
+      <view class="buttons">
+        <button class="button" type="primary" formType="submit">确定</button>
+        <button class="button" type="default" formType="reset">重置</button>
+      </view>
+    </form>
+  </view>
+  <template is="foot" />
+</view>

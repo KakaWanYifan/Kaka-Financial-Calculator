@@ -1,0 +1,43 @@
+<import src="../../../common/head.wxml" />
+<import src="../../../common/foot.wxml" />
+
+<view class="container">
+  <template is="head" data="{{title: '新增分红信息',desc:''}}"/>
+  <view class="page-body">
+    <form bindsubmit="set" bindreset="close">
+
+    <view class="page-section">
+      <view class="weui-cells__title">每10股派息（{{currency}}）</view>
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_input">
+          <input name="px" class="weui-input" type="digit"/>
+        </view>
+      </view>
+    </view>
+  
+    <view class="page-section">
+      <view class="weui-cells__title">每10股送股</view>
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_input">
+          <input name="sg" class="weui-input" type="number"/>
+        </view>
+      </view>
+    </view>
+    
+    <view class="page-section">
+      <view class="weui-cells__title">每10股转增股本</view>
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_input">
+          <input name="zzgb" class="weui-input" type="number"/>
+        </view>
+      </view>
+    </view>
+
+    <view class="buttons">
+      <button class="button" type="primary" formType="submit">确定</button>
+      <button class="button" type="default" formType="reset">取消</button>
+    </view>
+    </form>
+  </view>
+  <template is="foot"/>
+</view>

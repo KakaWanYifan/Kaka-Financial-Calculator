@@ -1,0 +1,19 @@
+<import src="../../../common/head.wxml" />
+<import src="../../../common/foot.wxml" />
+
+<view class="container">
+  <template is="head" data="{{title: '通货膨胀对消费的影响',desc:''}}"/>
+  <view class="page-body">
+    <view class="btn-area">
+      <navigator url="iCM?m=a" hover-class="navigator-hover">
+        <button class="btn_nav" >将来某时刻的现金实际购买力价值<span class="navigator-arrow"></span></button>
+      </navigator>
+      <navigator url="iCM?m=b" hover-class="navigator-hover">
+        <button class="btn_nav" >将来某时刻某种商品的价格<span class="navigator-arrow"></span></button>
+      </navigator>
+    </view>
+  </view>
+
+  <template is="foot" />
+</view>
+

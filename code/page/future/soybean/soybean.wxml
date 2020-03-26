@@ -1,0 +1,142 @@
+<import src="../head.wxml" />
+<import src="../../../common/foot.wxml" />
+
+<view class="container">
+  <template is="head" data="{{title: '豆类换算',desc:''}}" />
+  <view class="page-body">
+
+    <view class="page-section">
+      <view class="future-page-desc">
+        <view>大豆价格换算：1美元/蒲式耳＝36.7437美元/吨</view>
+        <view>豆粕价格换算：1美元/短吨＝1.1025美元/吨</view>
+        <view>大豆单产换算：1蒲式耳/英亩＝0.0672吨/公顷＝4.4799公斤/亩</view>
+        <view>大豆重量容积换算：1蒲式耳＝60磅＝0.0272公吨＝0.0268长吨＝0.03短吨</view>
+        <view>豆粕重量容积换算：1短吨＝2000磅＝0.9072公吨</view>
+        <view>豆油重量容积换算：1磅＝0.0004536公吨</view>
+      </view>
+    </view>
+
+    <form bindsubmit="calculate" bindreset="reset">
+
+      <view class="page-section">
+        <view class="weui-cells__title">请选择</view>
+        <view class="weui-cells weui-cells_after-title">
+          <view class="weui-cell weui-cell_input">
+            <picker name="calType" bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+              <view class="weui-input">{{array[index]}}</view>
+            </picker>
+          </view>
+        </view>
+      </view>
+
+      <view class="{{viewOneState}}">
+
+
+        <view class="page-section">
+          <view class="weui-cells__title">
+            <view>汇率（美元/人民币）</view>
+            <view class="{{forex}}">默认为中国银行外汇牌价(汇买价+汇卖价)/2</view>
+            <view class="{{forex}}">{{updatetime}}</view>
+          </view>
+          <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell weui-cell_input">
+              <input name="exchangeRate" class="weui-input" type="digit" value="{{exchangeRate}}" />
+            </view>
+          </view>
+        </view>
+        
+        <view class="page-section">
+          <view class="weui-cells__title">运费（美元/吨）</view>
+          <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell weui-cell_input">
+              <input name="carriage" class="weui-input" type="digit" />
+            </view>
+          </view>
+        </view>
+
+        <view class="page-section">
+          <view class="weui-cells__title">关税税率（%）</view>
+          <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell weui-cell_input">
+              <input name="tax" class="weui-input" type="digit" />
+            </view>
+          </view>
+        </view>
+
+        <view class="page-section">
+          <view class="weui-cells__title">增值税率（%）</view>
+          <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell weui-cell_input">
+              <input name="addTax" class="weui-input" type="digit" />
+            </view>
+          </view>
+        </view>
+
+        <view class="page-section">
+          <view class="weui-cells__title">基差（美分/蒲式耳）</view>
+          <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell weui-cell_input">
+              <input name="basis" class="weui-input" type="digit" />
+            </view>
+          </view>
+        </view>
+
+        <view class="page-section">
+          <view class="weui-cells__title">芝加哥盘面价（美分/蒲式耳）</view>
+          <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell weui-cell_input">
+              <input name="quotation" class="weui-input" type="digit" />
+            </view>
+          </view>
+        </view>
+
+      </view>
+
+      <view class="{{viewTwoState}}">
+
+        <view class="page-section">
+          <view class="weui-cells__title">大豆价格（元/吨）</view>
+          <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell weui-cell_input">
+              <input name="soya" class="weui-input" type="digit" />
+            </view>
+          </view>
+        </view>
+
+        <view class="page-section">
+          <view class="weui-cells__title">豆粕价格（元/吨）</view>
+          <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell weui-cell_input">
+              <input name="pulp" class="weui-input" type="digit" />
+            </view>
+          </view>
+        </view>
+
+        <view class="page-section">
+          <view class="weui-cells__title">豆油价格（元/吨）</view>
+          <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell weui-cell_input">
+              <input name="oil" class="weui-input" type="digit" />
+            </view>
+          </view>
+        </view>
+
+        <view class="page-section">
+          <view class="weui-cells__title">加工费（元/吨）</view>
+          <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell weui-cell_input">
+              <input name="prc" class="weui-input" type="digit" />
+            </view>
+          </view>
+        </view>
+
+      </view>
+
+      <view class="buttons">
+        <button class="button" type="primary" formType="submit">确定</button>
+        <button class="button" type="default" formType="reset">重置</button>
+      </view>
+    </form>
+  </view>
+  <template is="foot" />
+</view>

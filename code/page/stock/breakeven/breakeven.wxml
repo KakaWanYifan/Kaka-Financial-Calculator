@@ -1,0 +1,386 @@
+<import src="../../../common/head.wxml" />
+<import src="../../../common/foot.wxml" />
+
+<view class="container">
+  <template is="head" data="{{title: '保本卖出价',desc:''}}" />
+  <scroll-view scroll-x="true" class="xscroll_bar">
+    <view class="menu_item {{index==activeIndex?'active':''}}" style="width:{{itemWidth}};" wx:for="{{array}}" wx:key="menuId" bindtap="tabChange" data-index="{{index}}">
+      <view class="{{!(index==0 || index-1==activeIndex || index==activeIndex)?'menu_item_border':''}}">
+        {{item.menu}}
+      </view>
+    </view>
+  </scroll-view>
+
+  <view class="page-body">
+    <form bindsubmit="calculate" bindreset="reset">
+
+      <block wx:if="{{shaBlockState}}">
+
+        <view class="page-section">
+          <view class="weui-cells__title">买入价格（元/股）</view>
+          <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell weui-cell_input">
+              <input name="buyPrice" class="weui-input" type="digit" />
+            </view>
+          </view>
+        </view>
+
+        <view class="page-section">
+          <view class="weui-cells__title">买入数量（股）</view>
+          <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell weui-cell_input">
+              <input name="buyAmt" class="weui-input" type="number" />
+            </view>
+          </view>
+        </view>
+
+        <view class="page-section">
+          <view class="weui-cells__title">
+            <view>佣金比率（%）</view>
+            <view>（最低收取5元）</view>
+          </view>
+          <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell weui-cell_input">
+              <input name="brokerRate" class="weui-input" type="digit" />
+            </view>
+          </view>
+        </view>
+
+        <view class="page-section">
+          <view class="weui-cells__title">
+            <view>印花税税率（%）</view>
+          </view>
+          <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell weui-cell_input">
+              <input name="stampTax" class="weui-input" type="digit" />
+            </view>
+          </view>
+        </view>
+
+        <view class="page-section">
+          <view class="weui-cells__title">
+            <view>过户费费率（元/千股）</view>
+            <view>（最低收取1元）</view>
+          </view>
+          <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell weui-cell_input">
+              <input name="transferFee" class="weui-input" type="digit" />
+            </view>
+          </view>
+        </view>
+
+        <view class="page-section">
+          <view class="weui-cells__title">持有期间获得分红</view>
+          <switch style="padding-left:15px" name="isBonus" bindchange="switchChange" />
+        </view>
+
+        <view class="{{bonus}}">
+
+          <view class="page-section">
+            <view class="weui-cells__title">
+              <view>股利所得税税率（%）</view>
+              <view>（派息、送股适用)</view>
+            </view>
+            <view class="weui-cells weui-cells_after-title">
+              <view class="weui-cell weui-cell_input">
+                <input name="dividendTax" class="weui-input" type="digit" />
+              </view>
+            </view>
+            <view class="btn-area">
+              <button type="default" style="background-color: #fff;" bindtap="addBonus" data-k="bsha">新增分红信息</button>
+            </view>
+          </view>
+
+          <view class="page-section">
+            <view class="weui-cells__title">
+              <view>（左滑删除）</view>
+            </view>
+            <scroll-view class="cell_bonus" scroll-x="true" scroll-left="{{item.scrollLeft}}" wx:for="{{bonusData}}" wx:key="id" data-index="{{index}}" >
+              <view class="cell_bonus_body">
+                <view class="cell_bonus_body_content">每10股派{{item.px}}元，送{{item.sg}}股，转增{{item.zzgb}}股</view>
+              </view>
+              <view class="cell_bonus_cancel" bindtap="cancel" data-index="{{index}}">取消</view>
+              <view class="cell_bonus_delete" bindtap="delete" data-index="{{index}}">删除</view>
+            </scroll-view>
+          </view>
+          
+        </view>
+      </block>
+
+      <block wx:if="{{shbBlockState}}">
+
+        <view class="page-section">
+          <view class="weui-cells__title">买入价格（美元/股）</view>
+          <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell weui-cell_input">
+              <input name="buyPrice" class="weui-input" type="digit" />
+            </view>
+          </view>
+        </view>
+
+        <view class="page-section">
+          <view class="weui-cells__title">买入数量（股）</view>
+          <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell weui-cell_input">
+              <input name="buyAmt" class="weui-input" type="number" />
+            </view>
+          </view>
+        </view>
+
+        <view class="page-section">
+          <view class="weui-cells__title">
+            <view>佣金比率（%）</view>
+            <view>（最低收取1美元）</view>
+          </view>
+          <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell weui-cell_input">
+              <input name="brokerRate" class="weui-input" type="digit" />
+            </view>
+          </view>
+        </view>
+
+        <view class="page-section">
+          <view class="weui-cells__title">
+            <view>印花税税率（%）</view>
+          </view>
+          <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell weui-cell_input">
+              <input name="stampTax" class="weui-input" type="digit" />
+            </view>
+          </view>
+        </view>
+
+        <view class="page-section">
+          <view class="weui-cells__title">
+            <view>结算费费率（%）</view>
+          </view>
+          <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell weui-cell_input">
+              <input name="transferFee" class="weui-input" type="digit" />
+            </view>
+          </view>
+        </view>
+
+        <view class="page-section">
+          <view class="weui-cells__title">持有期间获得分红</view>
+          <switch style="padding-left:15px" name="isBonus" bindchange="switchChange" />
+        </view>
+
+        <view class="{{bonus}}">
+
+          <view class="page-section">
+            <view class="weui-cells__title">
+              <view>股利所得税税率（%）</view>
+              <view>（派息、送股适用)</view>
+            </view>
+            <view class="weui-cells weui-cells_after-title">
+              <view class="weui-cell weui-cell_input">
+                <input name="dividendTax" class="weui-input" type="digit" />
+              </view>
+            </view>
+            <view class="btn-area">
+              <button type="default" style="background-color: #fff;" bindtap="addBonus" data-k="bshb">新增分红信息</button>
+            </view>
+          </view>
+
+          <view class="page-section">
+            <view class="weui-cells__title">
+              <view>（左滑删除）</view>
+            </view>
+            <scroll-view class="cell_bonus" scroll-x="true" scroll-left="{{item.scrollLeft}}" wx:for="{{bonusData}}" wx:key="id" data-index="{{index}}" >
+              <view class="cell_bonus_body">
+                <view class="cell_bonus_body_content">每10股派{{item.px}}美元，送{{item.sg}}股，转增{{item.zzgb}}股</view>
+              </view>
+              <view class="cell_bonus_cancel" bindtap="cancel" data-index="{{index}}">取消</view>
+              <view class="cell_bonus_delete" bindtap="delete" data-index="{{index}}">删除</view>
+            </scroll-view>
+          </view>
+          
+        </view>
+
+      </block>
+
+      <block wx:if="{{szaBlockState}}">
+
+        <view class="page-section">
+          <view class="weui-cells__title">买入价格（元/股）</view>
+          <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell weui-cell_input">
+              <input name="buyPrice" class="weui-input" type="digit" />
+            </view>
+          </view>
+        </view>
+
+        <view class="page-section">
+          <view class="weui-cells__title">买入数量（股）</view>
+          <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell weui-cell_input">
+              <input name="buyAmt" class="weui-input" type="number" />
+            </view>
+          </view>
+        </view>
+
+        <view class="page-section">
+          <view class="weui-cells__title">
+            <view>佣金比率（%）</view>
+            <view>（最低收取5元）</view>
+          </view>
+          <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell weui-cell_input">
+              <input name="brokerRate" class="weui-input" type="digit" />
+            </view>
+          </view>
+        </view>
+
+        <view class="page-section">
+          <view class="weui-cells__title">
+            <view>印花税税率（%）</view>
+          </view>
+          <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell weui-cell_input">
+              <input name="stampTax" class="weui-input" type="digit" />
+            </view>
+          </view>
+        </view>
+
+        <view class="page-section">
+          <view class="weui-cells__title">持有期间获得分红</view>
+          <switch style="padding-left:15px" name="isBonus" bindchange="switchChange" />
+        </view>
+
+        <view class="{{bonus}}">
+
+          <view class="page-section">
+            <view class="weui-cells__title">
+              <view>股利所得税税率（%）</view>
+              <view>（派息、送股适用)</view>
+            </view>
+            <view class="weui-cells weui-cells_after-title">
+              <view class="weui-cell weui-cell_input">
+                <input name="dividendTax" class="weui-input" type="digit" />
+              </view>
+            </view>
+            <view class="btn-area">
+              <button type="default" style="background-color: #fff;" bindtap="addBonus" data-k="bsza">新增分红信息</button>
+            </view>
+          </view>
+
+          <view class="page-section">
+            <view class="weui-cells__title">
+              <view>（左滑删除）</view>
+            </view>
+            <scroll-view class="cell_bonus" scroll-x="true" scroll-left="{{item.scrollLeft}}" wx:for="{{bonusData}}" wx:key="id" data-index="{{index}}" >
+              <view class="cell_bonus_body">
+                <view class="cell_bonus_body_content">每10股派{{item.px}}元，送{{item.sg}}股，转增{{item.zzgb}}股</view>
+              </view>
+              <view class="cell_bonus_cancel" bindtap="cancel" data-index="{{index}}">取消</view>
+              <view class="cell_bonus_delete" bindtap="delete" data-index="{{index}}">删除</view>
+            </scroll-view>
+          </view>
+          
+        </view>
+
+      </block>
+
+      <block wx:if="{{szbBlockState}}">
+
+        <view class="page-section">
+          <view class="weui-cells__title">买入价格（港元/股）</view>
+          <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell weui-cell_input">
+              <input name="buyPrice" class="weui-input" type="digit" />
+            </view>
+          </view>
+        </view>
+
+        <view class="page-section">
+          <view class="weui-cells__title">买入数量（股）</view>
+          <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell weui-cell_input">
+              <input name="buyAmt" class="weui-input" type="number" />
+            </view>
+          </view>
+        </view>
+
+        <view class="page-section">
+          <view class="weui-cells__title">
+            <view>佣金比率（%）</view>
+            <view>（最低收取5港元）</view>
+          </view>
+          <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell weui-cell_input">
+              <input name="brokerRate" class="weui-input" type="digit" />
+            </view>
+          </view>
+        </view>
+
+        <view class="page-section">
+          <view class="weui-cells__title">
+            <view>印花税税率（%）</view>
+          </view>
+          <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell weui-cell_input">
+              <input name="stampTax" class="weui-input" type="digit" />
+            </view>
+          </view>
+        </view>
+
+        <view class="page-section">
+          <view class="weui-cells__title">
+            <view>结算费费率（%）</view>
+          </view>
+          <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell weui-cell_input">
+              <input name="transferFee" class="weui-input" type="digit" />
+            </view>
+          </view>
+        </view>
+
+        <view class="page-section">
+          <view class="weui-cells__title">持有期间获得分红</view>
+          <switch style="padding-left:15px" name="isBonus" bindchange="switchChange" />
+        </view>
+
+        <view class="{{bonus}}">
+
+          <view class="page-section">
+            <view class="weui-cells__title">
+              <view>股利所得税税率（%）</view>
+              <view>（派息、送股适用)</view>
+            </view>
+            <view class="weui-cells weui-cells_after-title">
+              <view class="weui-cell weui-cell_input">
+                <input name="dividendTax" class="weui-input" type="digit" />
+              </view>
+            </view>
+            <view class="btn-area">
+              <button type="default" style="background-color: #fff;" bindtap="addBonus" data-k="bszb">新增分红信息</button>
+            </view>
+          </view>
+
+          <view class="page-section">
+            <view class="weui-cells__title">
+              <view>（左滑删除）</view>
+            </view>
+            <scroll-view class="cell_bonus" scroll-x="true" scroll-left="{{item.scrollLeft}}" wx:for="{{bonusData}}" wx:key="id" data-index="{{index}}" >
+              <view class="cell_bonus_body">
+                <view class="cell_bonus_body_content">每10股派{{item.px}}港元，送{{item.sg}}股，转增{{item.zzgb}}股</view>
+              </view>
+              <view class="cell_bonus_cancel" bindtap="cancel" data-index="{{index}}">取消</view>
+              <view class="cell_bonus_delete" bindtap="delete" data-index="{{index}}">删除</view>
+            </scroll-view>
+          </view>
+          
+        </view>
+
+      </block>
+
+      <view class="buttons">
+        <button class="button" type="primary" formType="submit">确定</button>
+        <button class="button" type="default" formType="reset">重置</button>
+      </view>
+
+    </form>
+  </view>
+  <template is="foot" />
+</view>

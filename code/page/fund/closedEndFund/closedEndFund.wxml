@@ -1,0 +1,61 @@
+<import src="../../../common/head.wxml" />
+<import src="../../../common/foot.wxml" />
+
+<view class="container">
+  <template is="head" data="{{title: '封闭式基金投资损益',desc:''}}"/>
+  <view class="page-body">
+    <form bindsubmit="calculate" bindreset="reset">
+
+    <view class="page-section">
+      <view class="weui-cells__title">买入价格（元）</view>
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_input">
+          <input name="buyPrice" class="weui-input" type="digit"/>
+        </view>
+      </view>
+    </view>
+  
+    <view class="page-section">
+      <view class="weui-cells__title">分红金额（元）</view>
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_input">
+          <input name="bounus" class="weui-input" type="digit"/>
+        </view>
+      </view>
+    </view>
+    
+    <view class="page-section">
+      <view class="weui-cells__title">卖出价格（元）</view>
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_input">
+          <input name="sellPrice" class="weui-input" type="digit"/>
+        </view>
+      </view>
+    </view>
+
+    <view class="page-section">
+      <view class="weui-cells__title">卖出单位（份）</view>
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_input">
+          <input name="sellShares" class="weui-input" type="number"/>
+        </view>
+      </view>
+    </view>
+
+    <view class="page-section">
+      <view class="weui-cells__title">交易费率（%）</view>
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_input">
+          <input name="tradeRate" class="weui-input" type="digit"/>
+        </view>
+      </view>
+    </view>
+
+    <view class="buttons">
+      <button class="button" type="primary" formType="submit">确定</button>
+      <button class="button" type="default" formType="reset">重置</button>
+    </view>
+    </form>
+  </view>
+  <template is="foot"/>
+</view>

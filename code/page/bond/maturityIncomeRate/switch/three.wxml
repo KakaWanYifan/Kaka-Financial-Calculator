@@ -1,0 +1,78 @@
+<import src="../../../../common/head.wxml" />
+<import src="../../../../common/foot.wxml" />
+
+<view class="container">
+  <template is="head" data="{{title: '债券到期收益率',desc:''}}"/>
+  <view class="page-body">
+    <form bindsubmit="calculate" bindreset="reset">
+
+    <view class="page-section">
+      <view class="weui-cells__title">单位成本（元）</view>
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_input">
+          <input name="unitCost" class="weui-input" type="digit"/>
+        </view>
+      </view>
+    </view>
+  
+    <view class="page-section">
+      <view class="weui-cells__title">单位面值（元）</view>
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_input">
+          <input name="unitValue" class="weui-input" type="number"/>
+        </view>
+      </view>
+    </view>
+    
+    <view class="page-section">
+      <view class="weui-cells__title">购买交割日</view>
+        <view class="weui-cells weui-cells_after-title">
+          <view class="weui-cell weui-cell_input">
+            <view class="weui-cell__bd">
+              <picker name="deliveryDate" mode="date" bindchange="deliveryDateChange">
+                <view class="weui-input">{{deliveryDate}}</view>
+              </picker>
+            </view>
+          </view>
+        </view>
+    </view>
+
+    <view class="page-section">
+      <view class="weui-cells__title">到期兑付日</view>
+        <view class="weui-cells weui-cells_after-title">
+          <view class="weui-cell weui-cell_input">
+            <view class="weui-cell__bd">
+              <picker name="payDate" mode="date" bindchange="payDateChange">
+                <view class="weui-input">{{payDate}}</view>
+              </picker>
+            </view>
+          </view>
+        </view>
+    </view>
+
+    <view class="page-section">
+      <view class="weui-cells__title">票面年利率（%）</view>
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_input">
+          <input name="annualInterestRate" class="weui-input" type="digit"/>
+        </view>
+      </view>
+    </view>
+
+    <view class="page-section">
+      <view class="weui-cells__title">利息支付频率（次/年）</view>
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_input">
+          <input name="repayFrequency" class="weui-input" type="number"/>
+        </view>
+      </view>
+    </view>
+
+    <view class="buttons">
+      <button class="button" type="primary" formType="submit">确定</button>
+      <button class="button" type="default" formType="reset">重置</button>
+    </view>
+    </form>
+  </view>
+  <template is="foot"/>
+</view>

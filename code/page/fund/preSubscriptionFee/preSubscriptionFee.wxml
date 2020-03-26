@@ -1,0 +1,94 @@
+<import src="../../../common/head.wxml" />
+<import src="../../../common/foot.wxml" />
+
+<view class="container">
+  <template is="head" data="{{title: '基金认购费用',desc:'采用外扣法计算'}}"/>
+  <view class="page-body">
+    <form bindsubmit="calculate" bindreset="reset">
+    
+    <view class="page-section">
+      <view class="weui-cells__title">认购金额（元）</view>
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_input">
+          <input name="preSubAmount" class="weui-input" type="digit"/>
+        </view>
+      </view>
+    </view>
+
+    <view class="page-section">
+      <view class="weui-cells__title">发行价格（元）</view>
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_input">
+          <input name="issuePrice" class="weui-input" type="digit" value="{{issuePrice}}"/>
+        </view>
+      </view>
+    </view>
+    
+    <view class="page-section">
+      <view class="weui-cells__title">认购费率类型</view>
+        <radio-group name="preSubFeeType" bindchange="radioChange">
+          <radio style="padding-left:15px" value="percent" checked="{{checkState}}"/>百分比
+          <radio style="padding-left:15px" value="fixed"/>固定值
+        </radio-group>
+    </view>
+    
+    <view class="page-section {{percentViewState}}">
+      <view class="weui-cells__title">认购费率百分比（%）</view>
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_input">
+          <input name="preSubRate" class="weui-input" type="digit"/>
+        </view>
+      </view>
+    </view>
+    
+    <view class="page-section {{fixedViewState}}">
+      <view class="weui-cells__title">认购费率固定值（元）</view>
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_input">
+          <input name="preSubFixed" class="weui-input" type="digit"/>
+        </view>
+      </view>
+    </view>
+    
+    <view class="page-section">
+      <view class="weui-cells__title">同业存款利率（%）</view>
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_input">
+          <input name="depoRate" class="weui-input" type="digit"/>
+        </view>
+      </view>
+    </view>
+
+    <view class="page-section">
+      <view class="weui-cells__title">认购日期</view>
+        <view class="weui-cells weui-cells_after-title">
+          <view class="weui-cell weui-cell_input">
+            <view class="weui-cell__bd">
+              <picker name="preSubDate" mode="date" bindchange="bindPreSubDateChange">
+                <view class="weui-input">{{preSubDate}}</view>
+              </picker>
+            </view>
+          </view>
+        </view>
+    </view>
+
+    <view class="page-section">
+      <view class="weui-cells__title">成立日期</view>
+        <view class="weui-cells weui-cells_after-title">
+          <view class="weui-cell weui-cell_input">
+            <view class="weui-cell__bd">
+              <picker name="setDate" mode="date" bindchange="bindSetDateChange">
+                <view class="weui-input">{{setDate}}</view>
+              </picker>
+            </view>
+          </view>
+        </view>
+    </view>
+    <view class="buttons">
+    <button class="button" type="primary" formType="submit">确定</button>
+    <button class="button" type="default" formType="reset">重置</button>
+    </view>
+    </form>
+  </view>    
+  <template is="foot"/>
+</view>

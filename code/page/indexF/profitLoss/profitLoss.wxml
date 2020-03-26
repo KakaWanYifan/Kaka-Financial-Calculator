@@ -1,0 +1,56 @@
+<import src="../../../common/head.wxml" />
+<import src="../../../common/foot.wxml" />
+
+<view class="container">
+  <template is="head" data="{{title: '投资损益',desc:''}}" />
+
+  <view class="page-body">
+    <form bindsubmit="calculate" bindreset="reset">
+
+      <view class="page-section">
+        <view class="weui-cells__title">手续费比例（%）</view>
+        <view class="weui-cells weui-cells_after-title">
+          <view class="weui-cell weui-cell_input">
+            <input name="feeRate" class="weui-input" type="digit" />
+          </view>
+        </view>
+      </view>
+
+      <view class="page-section">
+        <view class="weui-cells__title">持仓仓位（%）</view>
+        <view class="weui-cells weui-cells_after-title">
+          <view class="weui-cell weui-cell_input">
+            <input name="tradesRate" class="weui-input" type="number" />
+          </view>
+        </view>
+      </view>
+
+      <view class="page-section">
+        <view class="btn-area">
+          <button type="default" style="background-color: #fff;" bindtap="addFutures" data-k="prifitLoss">新增投资信息</button>
+        </view>
+      </view>
+
+      <view class="page-section">
+        <view class="weui-cells__title">
+          <view>（左滑删除）</view>
+        </view>
+        <scroll-view class="cell_bonus" scroll-x="true" scroll-left="{{item.scrollLeft}}" wx:for="{{investData}}" wx:key="id" data-index="{{index}}">
+          <view class="cell_bonus_body">
+            <view class="cell_bonus_body_content">{{item.i}}，{{item.p}}，{{item.b}}%，{{item.k}}，{{item.dk}}，参照价{{item.rp}}</view>
+          </view>
+          <view class="cell_bonus_cancel" bindtap="cancel" data-index="{{index}}">取消</view>
+          <view class="cell_bonus_delete" bindtap="delete" data-index="{{index}}">删除</view>
+        </scroll-view>
+      </view>
+
+
+      <view class="buttons">
+        <button class="button" type="primary" formType="submit">确定</button>
+        <button class="button" type="default" formType="reset">重置</button>
+      </view>
+
+    </form>
+  </view>
+  <template is="foot" />
+</view>

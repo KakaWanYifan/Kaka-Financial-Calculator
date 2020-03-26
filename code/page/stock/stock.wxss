@@ -1,0 +1,65 @@
+.xscroll_bar {
+  overflow-y: hidden;
+  height: 80rpx;
+  line-height: 80rpx;
+  white-space: nowrap;
+  display: flex;
+  background: #ececec;
+}
+
+.xscroll_bar .active {
+  color: #1f1f1f;
+  background: #F8F8F8;
+}
+
+.menu_item {
+  text-align: center;
+  font-size: 30rpx;
+  color: #7c7c7c;
+  display: inline-block;
+}
+
+.menu_item_border {
+  border-left: 1rpx solid #d3d3d3;
+}
+
+.cell_bonus {
+  width: 100%;
+  height: 100rpx;
+  background: #fff;
+  position: relative;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  border-bottom: 1rpx solid #ececec;
+}
+
+.cell_bonus_body {
+  width: 100%;
+}
+
+.cell_bonus_body_content {
+  padding: 0 20rpx;
+  line-height: 100rpx;
+}
+
+.cell_bonus_cancel, .cell_bonus_delete{
+  position: absolute;
+  top: 0;
+  font-size: 26rpx;
+  width: 120rpx;
+  height: 100rpx;
+  line-height: 100rpx;
+  text-align: center;
+}
+
+.cell_bonus_cancel {
+  right: -120rpx;
+  background: #ececec;
+  color: #7c7c7c;
+}
+
+.cell_bonus_delete {
+  right: -240rpx;
+  background: #f6a623;
+  color: #fff;
+}
