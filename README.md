@@ -3,4 +3,4 @@
 
 大概17年10月写的，之前都在我自己搭建的SVN上，现在移到Git上。
 
-![](./img/jpg.jpg)
+![](http://wanyifan.cn/github/Kaka-Financial-Calculator.jpg)
